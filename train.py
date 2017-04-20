@@ -9,7 +9,7 @@ import data
 import model
 
 
-path = '/Users/allenchou/Documents/LIPS2008/_wav'
+path = './data/_wav'
 train_data_ratio = 0.8
 hidden_dim = 128
 layers_num = 2
