@@ -42,6 +42,15 @@ lr = args.lr
 
 print('hidden_dim = {}, layers_num = {}, cuda = {}'
       .format(hidden_dim, layers_num, cuda))
+
+torch.manual_seed(args.seed)
+if torch.cuda.is_available():
+    if not args.cuda:
+        print("WARNING: You have a CUDA device, so you should probably run with"
+              " --cuda")
+    else:
+        torch.cuda.manual_seed(args.seed)
+
 #############################
 # Load data
 #############################
