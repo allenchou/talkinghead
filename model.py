@@ -29,5 +29,6 @@ class RNNModel(nn.Module):
         return output
 
     def init_hidden(self):
-        return (Variable(torch.zeros(self.layers_num, 1, self.hidden_dim)),
-                Variable(torch.zeros(self.layers_num, 1, self.hidden_dim)))
+        weight = next(self.parameters()).data
+        return (Variable(weight.new(self.layers_num, 1, self.hidden_dim).zero_()),
+                Variable(weight.new(self.layers_num, 1, self.hidden_dim).zero_()))
