@@ -1,3 +1,4 @@
+import argparse
 import time
 import random
 import torch
@@ -9,14 +10,33 @@ import data
 import model
 
 
-path = './data/_wav'
+parser = argparse.ArgumentParser(description='RNN talking head')
+parser.add_argument('--data', type=str, default='./data/_wav',
+                    help='location of the data')
+parser.add_argument('--nhid', type=int, default=128,
+                    help='number of hidden units per layer')
+parser.add_argument('--nlayers', type=int, default=2,
+                    help='number of layers')
+parser.add_argument('--lr', type=float, default=0.1,
+                    help='initial learning rate')
+parser.add_argument('--epochs', type=int, default=40,
+                    help='upper epoch limit')
+parser.add_argument('--seed', type=int, default=1111,
+                    help='random seed')
+parser.add_argument('--cuda', action='store_true',
+                    help='use CUDA')
+parser.add_argument('--log-interval', type=int, default=10, metavar='N',
+                    help='report interval')
+args = parser.parse_args()
+
+path = args.data
 train_data_ratio = 0.8
-hidden_dim = 128
-layers_num = 2
-cuda = False
-log_interval = 10
-epochs = 6
-lr = 0.1
+hidden_dim = args.nhid
+layers_num = args.nlayers
+cuda = args.cuda
+log_interval = args.log_interval
+epochs = args.epochs
+lr = args.lr
 #############################
 # Load data
 #############################

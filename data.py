@@ -23,7 +23,7 @@ class Corpus(object):
 
         file_list = file_list[:100]
 
-        sorted(file_list)
+        file_list = sorted(file_list)
 
         corpus_feature = []
         for file in file_list:
