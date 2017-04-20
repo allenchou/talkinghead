@@ -19,7 +19,7 @@ parser.add_argument('--nlayers', type=int, default=2,
                     help='number of layers')
 parser.add_argument('--lr', type=float, default=0.1,
                     help='initial learning rate')
-parser.add_argument('--epochs', type=int, default=40,
+parser.add_argument('--epochs', type=int, default=6,
                     help='upper epoch limit')
 parser.add_argument('--seed', type=int, default=1111,
                     help='random seed')
@@ -27,6 +27,8 @@ parser.add_argument('--cuda', action='store_true',
                     help='use CUDA')
 parser.add_argument('--log-interval', type=int, default=10, metavar='N',
                     help='report interval')
+parser.add_argument('--data-size', type=int, default=100,
+                    help='data size')
 args = parser.parse_args()
 
 path = args.data
@@ -37,11 +39,15 @@ cuda = args.cuda
 log_interval = args.log_interval
 epochs = args.epochs
 lr = args.lr
+
+print('hidden_dim = {}, layers_num = {}, cuda = {}'
+      .format(hidden_dim, layers_num, cuda))
 #############################
 # Load data
 #############################
 
-corpus = data.Corpus(path, cuda=cuda)
+corpus = data.Corpus(path, size=args.data_size, cuda=cuda)
+
 
 
 def split(data_list, radio):

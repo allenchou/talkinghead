@@ -5,11 +5,12 @@ import librosa
 
 class Corpus(object):
 
-    def __init__(self, path, mfcc_dim=40, fps=50, bs_dim=46, cuda=False):
+    def __init__(self, path, size=-1, mfcc_dim=40, fps=50, bs_dim=46, cuda=False):
         self.mfcc_dim = mfcc_dim
         self.fps = fps
         self.bs_dim = bs_dim
         self.cuda = False
+        self.size = size
 
         self.audio = self.audio_feature_extraction(path)
         self.video = self.video_feature_extraction(path)
@@ -21,9 +22,10 @@ class Corpus(object):
         file_list = [os.path.join(path, f) for f in os.listdir(path) if
                      f[0] != '.']
 
-        file_list = file_list[:100]
-
         file_list = sorted(file_list)
+        if self.size > 0:
+            file_list = file_list[:self.size]
+        self.size = len(file_list)
 
         corpus_feature = []
         for file in file_list:
