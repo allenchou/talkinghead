@@ -19,8 +19,8 @@ class RNNModel(nn.Module):
         # print('sequence_length = {}, feature_dim = {}'.format(input.size(0),
         #                                                       input.size(1)))
         # print('type of input: {}'.format(type(input.data)))
-#          print("input type: {}, hidden type: {}".format(type(input.data),
-#                                                         type(self.hidden[0].data)))
+        #  print("input type: {}, hidden type: {}".format(type(input.data),
+        #                                                 type(self.hidden[0].data)))
         output, self.hidden = self.rnn(input.view(input.size(0), 1,
                                                   input.size(1)), self.hidden)
 
