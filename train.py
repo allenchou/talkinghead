@@ -56,7 +56,7 @@ if torch.cuda.is_available():
 #############################
 
 corpus = data.Corpus(path, size=args.data_size, cuda=cuda)
-
+#  print('corpus type: {}'.format(type(corpus.data()[0][0])))
 
 
 def split(data_list, radio):

@@ -9,7 +9,7 @@ class Corpus(object):
         self.mfcc_dim = mfcc_dim
         self.fps = fps
         self.bs_dim = bs_dim
-        self.cuda = False
+        self.cuda = cuda
         self.size = size
 
         self.audio = self.audio_feature_extraction(path)
